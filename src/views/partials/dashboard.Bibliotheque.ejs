@@ -1,0 +1,278 @@
+            <!-- Section Bibliothèque -->
+<div id="bibliotheque" class="content-section">
+    
+    
+    <!-- Barre d'actions -->
+    <div class="actions-bar">
+        <div class="search-box">
+            <input type="text" id="searchBooks" placeholder="Rechercher un livre...">
+            <i class="fas fa-search"></i>
+        </div>
+        
+        <div class="action-buttons">
+            <button id="addBookBtn" class="btn btn-primary">
+                <i class="fas fa-plus"></i> Ajouter un livre
+            </button>
+            <div class="dropdown">
+                <button class="btn" id="sortButton">
+                    <i class="fas fa-sort"></i> Trier par
+                </button>
+                <div class="dropdown-content" id="sortOptions">
+                    <a href="#" data-sort="titre">Titre</a>
+                    <a href="#" data-sort="auteur">Auteur</a>
+                    <a href="#" data-sort="date_ajout">Date d'ajout</a>
+                    <a href="#" data-sort="progression">Progression</a>
+                    <a href="#" data-sort="evaluation">Note</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="btn btn-secondary" id="filterButton">
+                    <i class="fas fa-filter"></i> Filtrer
+                </button>
+                <div class="dropdown-content" id="filterOptions">
+                    <a href="#" data-filter="tous">Tous les livres</a>
+                    <a href="#" data-filter="en_cours">En cours</a>
+                    <a href="#" data-filter="à_lire">Pas encore commencé</a>
+                    <a href="#" data-filter="terminé">Terminés</a>
+                    <a href="#" data-filter="abandonné">Abandonnés</a>
+                    <a href="#" data-filter="favori">Favoris</a>
+                    <a href="#" data-filter="recemment_lu">Récemment lus</a>
+                    <a href="#" data-filter="mieux_notes">Mieux notés</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Grille de livres -->
+    <div class="books-grid" id="booksContainer">
+        <!-- Les livres seront chargés dynamiquement ici -->
+    </div>
+    
+    <!-- Pagination -->
+    <div class="pagination" id="pagination">
+        <!-- La pagination sera générée dynamiquement -->
+    </div>
+</div>
+
+<!-- Template pour une carte de livre (sera utilisé par JavaScript) -->
+<template id="bookCardTemplate">
+    <div class="book-card">
+        <div class="book-cover">
+            <img src="" alt="Couverture du livre">
+            <div class="book-progress-badge">0%</div>
+            <div class="book-status"></div>
+        </div>
+        <div class="book-info">
+            <h3 class="book-title"></h3>
+            <p class="book-author"></p>
+            <p class="book-category"></p>
+        </div>
+    </div>
+</template>
+
+<!-- Modal d'ajout/édition de livre -->
+<div id="bookModal" class="modal">
+    <div class="modal-content book-form-modal">
+        <span class="close">&times;</span>
+        <div class="modal-header">
+            <h2 id="bookModalTitle">Ajouter un livre</h2>
+        </div>
+        <div class="modal-body">
+            <form id="bookForm">
+                <div class="form-grid">
+                    <div class="form-left">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="bookTitle">Titre *</label>
+                                <input type="text" id="bookTitle" name="titre" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="bookAuthor">Auteur *</label>
+                                <input type="text" id="bookAuthor" name="auteur" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="bookDescription">Description</label>
+                            <textarea id="bookDescription" name="description" placeholder="Résumé du livre..."></textarea>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="bookPages">Nombre de pages *</label>
+                                <input type="number" id="bookPages" name="nombrePages" min="1" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="bookGenre">Genre *</label>
+                                <select id="bookGenre" name="genre" required>
+                                    <option value="">Sélectionner</option>
+                                    <option value="Roman">Roman</option>
+                                    <option value="Science-fiction">Science-fiction</option>
+                                    <option value="Fantasy">Fantasy</option>
+                                    <option value="Policier">Policier</option>
+                                    <option value="Thriller">Thriller</option>
+                                    <option value="Romance">Romance</option>
+                                    <option value="Historique">Historique</option>
+                                    <option value="Biographie">Biographie</option>
+                                    <option value="Manga">Manga</option>
+                                    <option value="BD">Bande dessinée</option>
+                                    <option value="Poésie">Poésie</option>
+                                    <option value="Théâtre">Théâtre</option>
+                                    <option value="Essai">Essai</option>
+                                    <option value="Autre">Autre</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="bookLanguage">Langue *</label>
+                                <select id="bookLanguage" name="langue" required>
+                                    <option value="">Sélectionner</option>
+                                    <option value="Français">Français</option>
+                                    <option value="Anglais">Anglais</option>
+                                    <option value="Espagnol">Espagnol</option>
+                                    <option value="Allemand">Allemand</option>
+                                    <option value="Italien">Italien</option>
+                                    <option value="Japonais">Japonais</option>
+                                    <option value="Chinois">Chinois</option>
+                                    <option value="Autre">Autre</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="bookPublisher">Éditeur</label>
+                                <input type="text" id="bookPublisher" name="editeur">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="bookISBN">ISBN</label>
+                            <input type="text" id="bookISBN" name="ISBN" placeholder="978-0-000000-0-0">
+                        </div>
+                    </div>
+                    
+                    <div class="cover-upload">
+                        <h3>Couverture du livre</h3>
+                        <div class="cover-preview" id="coverPreview">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <div class="cover-upload-controls">
+                            <input type="file" id="coverInput" name="couverture" accept="image/*" style="display: none;">
+                            <button type="button" class="btn btn-secondary" onclick="document.getElementById('coverInput').click()">
+                                <i class="fas fa-upload"></i> Choisir une couverture
+                            </button>
+                        </div>
+                        <p class="cover-help">Formats acceptés : JPEG, PNG, WebP<br>Taille max : 5 MB</p>
+                    </div>
+                </div>
+                
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeModals()">Annuler</button>
+                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal de détails du livre -->
+<div id="bookDetailsModal" class="modal">
+    <div class="modal-content book-details-modal">
+        <span class="close">&times;</span>
+        <div class="book-details-container">
+            <!-- En-tête avec couverture et infos principales -->
+            <div class="book-details-header">
+                <div class="book-cover-section">
+                    <img id="selectedBookCover" src="" alt="Couverture du livre" class="book-cover-large">
+                    <div class="book-status-badge" id="selectedBookStatus"></div>
+                </div>
+                <div class="book-main-info">
+                    <h2 id="selectedBookTitle"></h2>
+                    <p id="selectedBookAuthor" class="book-author-large"></p>
+                    <p id="selectedBookGenre" class="book-genre-large"></p>
+                    <p id="selectedBookPages" class="book-pages-large"></p>
+                    <div class="book-progress-section">
+                        <div class="progress-info">
+                            <span>Progression : </span>
+                            <span id="selectedBookProgress">0%</span>
+                        </div>
+                        <div class="progress-bar-large">
+                            <div class="progress-fill" id="selectedBookProgressFill"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Formulaire de gestion -->
+            <form id="bookDetailsForm" class="book-details-form">
+                <input type="hidden" id="selectedBookId" name="userBookId">
+                
+                <div class="form-sections">
+                    <!-- Section Progression -->
+                    <div class="form-section">
+                        <h3>Progression de lecture</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="currentPage">Page actuelle</label>
+                                <input type="number" id="currentPage" name="pageActuelle" min="0" placeholder="0">
+                            </div>
+                            <div class="form-group">
+                                <label for="bookStatus">Statut</label>
+                                <select id="bookStatus" name="statut">
+                                    <option value="à_lire">À lire</option>
+                                    <option value="en_cours">En cours</option>
+                                    <option value="terminé">Terminé</option>
+                                    <option value="abandonné">Abandonné</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="bookNotes">Notes de lecture</label>
+                            <textarea id="bookNotes" name="notes" placeholder="Vos notes, impressions, citations favorites..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Section Évaluation -->
+                    <div class="form-section">
+                        <h3>Évaluation</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Note</label>
+                                <div class="rating-stars">
+                                    <input type="hidden" id="bookRating" name="evaluation" value="">
+                                    <div class="stars-container">
+                                        <i class="fas fa-star star" data-rating="1"></i>
+                                        <i class="fas fa-star star" data-rating="2"></i>
+                                        <i class="fas fa-star star" data-rating="3"></i>
+                                        <i class="fas fa-star star" data-rating="4"></i>
+                                        <i class="fas fa-star star" data-rating="5"></i>
+                                    </div>
+                                    <span class="rating-text">Cliquez sur les étoiles pour noter</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Favori</label>
+                                <div class="favorite-heart">
+                                    <input type="hidden" id="bookFavorite" name="favori" value="false">
+                                    <i class="fas fa-heart heart-icon" id="heartIcon"></i>
+                                    <span class="favorite-text">Cliquez sur le cœur pour marquer comme favori</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Actions -->
+                <div class="book-details-actions">
+                    <button type="button" class="btn btn-danger" onclick="deleteBook()">
+                        <i class="fas fa-trash"></i> Supprimer
+                    </button>
+                    <button type="button" class="btn btn-secondary" onclick="closeModals()">Annuler</button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Enregistrer
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReadFlow - Tableau de Bord</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/dashboard.css">
+    <link rel="stylesheet" href="/styles/bibliotheque.css">
+</head>
+<body>
+    <!-- Overlay pour mobile -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Tableau de bord -->
+    <div class="dashboard">
+                
+        <!-- Contenu principal -->
+        <div class="main-content">
+            <div class="header">
+                <div class="top-nav" style="display:flex; gap:12px; align-items:center;">
+                    <a href="#" class="nav-link active" data-section="accueil"><i class="fas fa-tachometer-alt"></i> Tableau de bord</a>
+                    <a href="#" class="nav-link" data-section="bibliotheque"><i class="fas fa-bookmark"></i> Bibliothèque</a>
+                    <a href="#" class="nav-link" data-section="profil"><i class="fas fa-user"></i> Profil</a>
+                </div>
+            </div>
+                
+            <!-- Sections dynamiques du dashboard -->
+            <main id="dashboard-content">
+                <%- include('partials/dashboard.Accueil.ejs') %>
+                <%- include('partials/dashboard.Bibliotheque.ejs') %>
+                <%- include('partials/dashboard.Profil.ejs') %>
+            </main>
+
+            </div>
+        </div>
+    
+    <!-- Navigation mobile -->
+    <div class="bottom-nav">
+        <ul class="nav-items">
+            <li><a href="#" class="nav-link active" data-section="accueil"><i class="fas fa-tachometer-alt"></i> Tableau de bord</a></li>
+            <li><a href="#" class="nav-link" data-section="bibliotheque"><i class="fas fa-bookmark"></i> Bibliothèque</a></li>
+            <li><a href="#" class="nav-link" data-section="profil"><i class="fas fa-user"></i> Profil</a></li>
+        </ul>
+    </div>
+                
+    <script src="/scripts/dashboard.js"></script>
+    <script src="/scripts/bibliotheque.js"></script>
+</body>
+</html>

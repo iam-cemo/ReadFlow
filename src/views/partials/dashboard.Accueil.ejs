@@ -1,0 +1,61 @@
+            <!-- Section Accueil -->
+            <div id="accueil" class="content-section active">
+                <h1 class="page-title">Tableau de Bord</h1>
+                
+                <!-- Cartes de statistiques -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <div class="stat-icon">
+                                <i class="fas fa-book-open"></i>
+                            </div>
+                        </div>
+                        <div class="stat-value" id="booksInProgress">0</div>
+                        <div class="stat-label">Livres en cours</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <div class="stat-icon" style="background: rgba(255, 58, 103, 0.1); color: var(--secondary);">
+                                <i class="fas fa-bullseye"></i>
+                            </div>
+                        </div>
+                        <div class="stat-value" id="monthlyProgress">0%</div>
+                        <div class="stat-label">Objectif mensuel</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <div class="stat-icon" style="background: rgba(16, 184, 96, 0.1); color: #10b860;">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                        </div>
+                        <div class="stat-value" id="booksCompleted">0</div>
+                        <div class="stat-label">Livres terminés</div>
+                    </div>
+                </div>
+                
+                <!-- Section des livres en cours -->
+                <div class="books-section">
+                    <div class="section-header">
+                        <h2 class="section-title">En cours de lecture</h2>
+                        <a href="#" class="view-all" onclick="switchToSection('bibliotheque')">Voir tout</a>
+                    </div>
+                    
+                    <div class="books-grid" id="currentBooksGrid">
+                        <!-- Les livres en cours seront chargés dynamiquement ici -->
+                    </div>
+                </div>
+                
+                <!-- Section des livres récemment terminés -->
+                <div class="books-section">
+                    <div class="section-header">
+                        <h2 class="section-title">Lecture terminée</h2>
+                        <a href="#" class="view-all" onclick="switchToSection('bibliotheque')">Voir tout</a>
+                    </div>
+                    
+                    <div class="books-grid" id="completedBooksGrid">
+                        <!-- Les livres terminés seront chargés dynamiquement ici -->
+                    </div>
+                </div>
+            </div>

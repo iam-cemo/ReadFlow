@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accueil</title>
+    <!-- Lien vers le CSS séparé pour la maintenabilité -->
+    <link rel="stylesheet" href="/styles/accueil.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        /* Styles pour la modale mot de passe oublié */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
+        }
+        
+        .modal-content {
+            background-color: #fff;
+            margin: 15% auto;
+            padding: 2rem;
+            border-radius: 1rem;
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            position: relative;
+        }
+        
+        .close {
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+        }
+        
+        .close:hover {
+            color: #000;
+        }
+        
+        .modal-content h2 {
+            margin: 0 0 1rem 0;
+            color: #333;
+        }
+        
+        .modal-content p {
+            margin: 0 0 1.5rem 0;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+      <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <i class="fas fa-book-open"></i>
+                ReadFlow
+            </a>
+            
+            <ul class="nav-links">
+                <li><a href="#features">Fonctionnalités</a></li>
+                <li><a href="#auth" class="cta-button">Commencer l'expérience</a></li>
+            </ul>
+            
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1>Transformez votre façon de lire</h1>
+                <p>ReadFlow révolutionne votre expérience de lecture avec une plateforme moderne de gestion de vos livres, notes et citations favorites.</p>
+                <div class="hero-buttons">
+                    <a href="#auth" class="btn" onclick="showForm('signup')">Créer votre compte</a>
+                    <a href="#auth" class="btn btn-secondary" onclick="showForm('login')">Connectez-vous !</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=900&q=80" alt="ReadFlow App Interface">
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Fonctionnalités exceptionnelles</h2>
+                <p>Découvrez comment ReadFlow transforme votre expérience de lecture</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bookmark"></i>
+                    </div>
+                    <h3>Suivi de lecture</h3>
+                    <p>Gardez une trace de votre progression et reprenez exactement où vous vous êtes arrêté.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-highlighter"></i>
+                    </div>
+                    <h3>Surlignage intelligent</h3>
+                    <p>Surlignez vos passages préférés et retrouvez-les instantanément.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-tags"></i>
+                    </div>
+                    <h3>Organisation</h3>
+                    <p>Classez vos livres par collections, tags et catégories personnalisées.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Statistiques</h3>
+                    <p>Analysez vos habitudes de lecture et suivez vos objectifs.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-sync"></i>
+                    </div>
+                    <h3>Synchronisation</h3>
+                    <p>Accédez à votre bibliothèque depuis n'importe quel appareil.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Sécurisé</h3>
+                    <p>Vos données sont cryptées et sauvegardées en toute sécurité.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Auth Section -->
+    <section class="auth-section" id="auth">
+        <div class="container">
+            <div class="auth-container">
+                <div class="auth-image">
+                    <div class="auth-image-content">
+                        <h2>Rejoignez notre communauté de lecteurs</h2>
+                        <p>Plus de 150 000 lecteurs utilisent déjà ReadFlow pour transformer leur expérience de lecture.</p>
+                    </div>
+                </div>
+                
+                <div class="auth-forms">
+                    <div class="form-toggle">
+                        <div class="toggle-btn active" onclick="showForm('login')">Connexion</div>
+                        <div class="toggle-btn" onclick="showForm('signup')">Inscription</div>
+                    </div>
+                    
+                    <form id="login-form" class="form active">
+                        <div class="input-group">
+                            <label for="login-email">Adresse email</label>
+                            <input type="email" id="login-email" placeholder="sophie@exemple.fr" required>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="login-password">Mot de passe</label>
+                            <input type="password" id="login-password" placeholder="Votre mot de passe" required>
+                        </div>
+
+                        <div class="input-group" style="display:flex; justify-content:space-between; align-items:center;">
+                            <a href="#" id="forgotPasswordLink" style="font-size:0.9rem;">Mot de passe oublié ?</a>
+                        </div>
+                        
+                        <button type="submit" class="btn">Se connecter</button>
+                    </form>
+                    
+                    <form id="signup-form" class="form">
+                        <div class="input-group">
+                            <label for="signup-email">Adresse email</label>
+                            <input type="email" id="signup-email" placeholder="sophie@exemple.fr" required>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="signup-password">Mot de passe</label>
+                            <input type="password" id="signup-password" placeholder="Créez un mot de passe" required>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="confirm-password">Confirmer le mot de passe</label>
+                            <input type="password" id="confirm-password" placeholder="Confirmez votre mot de passe" required>
+                        </div>
+                        
+                        <button type="submit" class="btn">Créer un compte</button>
+                    </form>
+                    
+                    <!-- Modale mot de passe oublié -->
+                    <div id="forgotPasswordModal" class="modal">
+                        <div class="modal-content">
+                            <span class="close" id="closeForgotModal">&times;</span>
+                            <h2>Mot de passe oublié</h2>
+                            <p>Entrez votre email pour recevoir un lien de connexion sécurisé</p>
+                            <form id="forgotPasswordForm">
+                                <div class="input-group">
+                                    <label for="forgotEmail">Email</label>
+                                    <input type="email" id="forgotEmail" required>
+                                </div>
+                                <button type="submit" class="btn">Envoyer le lien</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>Ce que disent nos utilisateurs</h2>
+                <p>Découvrez les témoignages de notre communauté de lecteurs passionnés</p>
+            </div>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        <p>ReadFlow a complètement transformé ma façon de lire. Je peux maintenant organiser mes notes et retrouver mes citations favorites en quelques secondes.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">M</div>
+                        <div class="author-info">
+                            <h4>Marie Dupont</h4>
+                            <p>Lectrice passionnée</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        <p>En tant qu'étudiant en littérature, ReadFlow m'aide à garder une trace de toutes mes lectures et analyses. Un outil indispensable !</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">T</div>
+                        <div class="author-info">
+                            <h4>Thomas Martin</h4>
+                            <p>Étudiant en littérature</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        <p>J'adore pouvoir accéder à ma bibliothèque depuis n'importe quel appareil. La synchronisation est parfaite et l'interface magnifique.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">L</div>
+                        <div class="author-info">
+                            <h4>Lucie Bernard</h4>
+                            <p>Blogueuse littéraire</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <a href="#" class="footer-logo">
+                    <i class="fas fa-book-open"></i>
+                    ReadFlow
+                </a>
+                
+                <p>La plateforme moderne pour les passionnés de lecture.</p>
+                
+                <ul class="footer-links">
+                    <li><a href="#features">Fonctionnalités</a></li>
+                    <li><a href="#auth">Commencer l'expérience</a></li>
+                </ul>
+                
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                
+                <div class="copyright">
+                    <p>&copy; 2023 ReadFlow. Tous droits réservés.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Lien vers le JS séparé pour la maintenabilité -->
+    <div id="toast" class="toast"><i class="fas fa-info-circle"></i><span id="toast-text"></span></div>
+    <script src="/scripts/accueil.js"></script>
+</body>
+</html>

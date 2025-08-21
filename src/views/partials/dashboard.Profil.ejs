@@ -1,0 +1,115 @@
+            <!-- Section Profil -->
+            <div id="profil" class="content-section">
+                
+                
+                <!-- Carte profil avec avatar/pseudo/bio et thème -->
+                <div class="profile-card">
+                    <div class="profile-avatar" id="profileAvatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h2 class="profile-name" id="profilePseudo">Mon pseudo</h2>
+                    <p class="profile-bio" id="profileBio">Bienvenue sur ReadFlow !</p>
+                </div>
+                
+                <!-- Actions sous forme de tuiles pro -->
+                <div class="books-section">
+                    <div class="section-header">
+                        <h2 class="section-title">Paramètres</h2>
+                    </div>
+                    <div class="tiles-grid">
+                        <button class="tile" id="openProfileModal" type="button"><i class="fas fa-id-badge"></i><span>Profil</span></button>
+                        <button class="tile" id="openAvatarModal" type="button"><i class="fas fa-camera"></i><span>Photo</span></button>
+                        <button class="tile" id="openEmailModal" type="button"><i class="fas fa-envelope"></i><span>Email</span></button>
+                        <button class="tile" id="openPasswordModal" type="button"><i class="fas fa-lock"></i><span>Mot de passe</span></button>
+                        <button class="tile danger" id="openDeleteModal" type="button"><i class="fas fa-user-slash"></i><span>Supprimer</span></button>
+                        <button class="tile" id="logoutBtn" type="button"><i class="fas fa-right-from-bracket"></i><span>Déconnexion</span></button>
+                    </div>
+                    </div>
+                    
+                <!-- Modales -->
+                <div class="modal" id="modalProfile">
+                  <div class="modal-content">
+                    <h3>Modifier le profil</h3>
+                    <form id="formProfile" class="form-grid">
+                      <div class="form-group">
+                        <label for="pseudo">Pseudo</label>
+                        <input type="text" id="pseudo" placeholder="Entrez votre pseudo" />
+                      </div>
+                      <div class="form-group" style="grid-column:1/-1;">
+                        <label for="bio">Bio</label>
+                        <textarea id="bio" rows="3" placeholder="Décrivez-vous"></textarea>
+                      </div>
+                      <div class="form-actions">
+                        <button class="btn" type="submit">Enregistrer</button>
+                        <button class="btn btn-secondary" type="button" data-close>Annuler</button>
+                      </div>
+                    </form>
+                                </div>
+                            </div>
+
+                <div class="modal" id="modalAvatar">
+                  <div class="modal-content">
+                    <h3>Changer la photo</h3>
+                    <form id="formAvatar" class="form-grid">
+                      <div class="form-group" style="grid-column:1/-1;">
+                        <input type="file" id="avatarFile" accept="image/*" capture="environment" />
+                      </div>
+                      <div class="form-actions">
+                        <button class="btn" type="submit">Téléverser</button>
+                        <button class="btn btn-secondary" type="button" data-close>Annuler</button>
+                      </div>
+                    </form>
+                  </div>
+                        </div>
+                        
+                <div class="modal" id="modalEmail">
+                  <div class="modal-content">
+                    <h3>Changer d'email</h3>
+                    <form id="formEmail" class="form-grid">
+                      <div class="form-group">
+                        <label for="newEmail">Nouvel email</label>
+                        <input type="email" id="newEmail" />
+                      </div>
+                      <div class="form-group">
+                        <label for="currentPasswordForEmail">Mot de passe actuel</label>
+                        <input type="password" id="currentPasswordForEmail" />
+                      </div>
+                      <div class="form-actions">
+                        <button class="btn" type="submit">Mettre à jour</button>
+                        <button class="btn btn-secondary" type="button" data-close>Annuler</button>
+                      </div>
+                    </form>
+                                </div>
+                            </div>
+
+                <div class="modal" id="modalPassword">
+                  <div class="modal-content">
+                    <h3>Changer de mot de passe</h3>
+                    <form id="formPassword" class="form-grid">
+                      <div class="form-group">
+                        <label for="oldPassword">Ancien</label>
+                        <input type="password" id="oldPassword" />
+                      </div>
+                      <div class="form-group">
+                        <label for="newPassword">Nouveau</label>
+                        <input type="password" id="newPassword" />
+                      </div>
+                      <div class="form-actions">
+                        <button class="btn" type="submit">Mettre à jour</button>
+                        <button class="btn btn-secondary" type="button" data-close>Annuler</button>
+                      </div>
+                    </form>
+                                </div>
+                            </div>
+                        
+                <div class="modal" id="modalDelete">
+                  <div class="modal-content">
+                    <h3>Supprimer le compte</h3>
+                    <p>Cette action est irréversible. Confirmez la suppression.</p>
+                    <div class="form-actions">
+                      <button class="btn btn-secondary" id="deleteAccountBtn" type="button" style="border-color:#dc2626;color:#dc2626;">Supprimer</button>
+                      <button class="btn" type="button" data-close>Annuler</button>
+                        </div>
+                    </div>
+                            </div>
+            </div>
